@@ -6,5 +6,6 @@
         DateTime Date { get; set; }
         int TemperatureC { get; set; }
         int TemperatureF { get; }
+        string TypeTemperature { get; }
     }
 }

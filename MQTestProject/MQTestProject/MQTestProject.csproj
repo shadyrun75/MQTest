@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ActiveMQTest\ActiveMQTest.csproj" />
     <ProjectReference Include="..\NetMQTest\NetMQTest.csproj" />
+    <ProjectReference Include="..\RabbitMQTest\RabbitMQTest.csproj" />
   </ItemGroup>
 
 </Project>

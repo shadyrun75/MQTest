@@ -10,6 +10,7 @@
 
         public string City { get; set; }
 
+        public string TypeTemperature => TemperatureC > 0 ? "hight" : TemperatureC < 0 ? "low" : "zero";
         public static WeatherForecast Get(string city)
         {
             Console.WriteLine("Enter temperature\r\n > ");

@@ -4,8 +4,10 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
-namespace Models
+namespace MQTestProject.Models
 {
     public class ObjectHelper
     {
@@ -18,6 +20,14 @@ namespace Models
                 return ms.ToArray();
             }
         }
+
+        public static byte[] ObjectToJsonToByteArray(Object obj)
+        {
+            var str = JsonConvert.SerializeObject(obj);
+            return Encoding.UTF8.GetBytes(str);
+        }
+
+        public static string ObjectToJson(Object obj) => JsonConvert.SerializeObject(obj);
 
         public static T ByteArrayToObject<T>(byte[] arrBytes)
             where T : class

@@ -1,13 +1,13 @@
-﻿namespace ActiveMQTest
+﻿namespace RabbitMQTest
 {
-    public class ActiveMQTestProgram
-    {
-        static readonly int _port = 61616;
-        static readonly string _host = "localhost";
-        public async Task Main(string[] args)
+    public class RabbitMQTestProgram
+    { 
+        readonly string _host = "localhost";
+        readonly ushort _port = 5672;
+        public async Task Main()
         {
             Console.Clear();
-            Console.WriteLine("Who we are? 1 - Simple Consumer, 2 - Simple Publisher, 3 - MassTransit Consumer, 4 - MassTransit Publiser");
+            Console.WriteLine("Who we are? 1 - Standart Consumer; 2 - Standart Publisher, 3 - MassTransit Consumer, 4 - MassTransit Publisher");
             var key = Console.ReadKey().Key;
             Console.Write("\r\n");
             switch (key)
@@ -22,23 +22,23 @@
 
         private async Task StartMassTransiPublisher()
         {
-            await MassTransitPublisher.Main(_host, _port);
+            await new RabbitMQTest.MassTransit.Publisher().Main(_host, _port);   
         }
 
         private async Task StartMassTransitConsumer()
         {
-            throw new NotImplementedException();
+            await new RabbitMQTest.MassTransit.Consumer().Main(_host, _port);
         }
 
         private async Task StartSimplePublisher()
         {
-            using (var publisher = new ActiveMQTest.Standart.Publisher())
+            using (var publisher = new RabbitMQTest.Standart.Publisher())
                 await publisher.Main(_host, _port);
         }
 
         private async Task StartSimpleConsumer()
         {
-            await new ActiveMQTest.Standart.Consumer().Main(_host, _port);
+            await new RabbitMQTest.Standart.Consumer().Main(_host, _port);
         }
     }
 }

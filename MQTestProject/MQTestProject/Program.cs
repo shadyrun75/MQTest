@@ -1,13 +1,14 @@
 ﻿using NetMQTest;
 using ActiveMQTest;
 
-Console.WriteLine("What we gonna test? 1 - NetMQ, 2 - ActiveMQ ");
+Console.WriteLine("What we gonna test? 1 - RabbitMQ, 2 - ActiveMQ, 3 - ZeroMQ ");
 try
 {
     switch (Console.ReadKey().Key)
     {
-        case ConsoleKey.D1: NetMQTestProgram.Main(null); break;
-        case ConsoleKey.D2: ActiveMQTestProgram.Main(null); break;
+        case ConsoleKey.D1: await new RabbitMQTest.RabbitMQTestProgram().Main(); break;
+        case ConsoleKey.D2: await new ActiveMQTestProgram().Main(null); break;
+        case ConsoleKey.D3: NetMQTestProgram.Main(null); break;
         default: Console.WriteLine("Unkown command"); break;
     }
 }
